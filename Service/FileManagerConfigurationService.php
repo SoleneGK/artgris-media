@@ -9,15 +9,9 @@ use Twig\TwigFunction;
 
 class FileManagerConfigurationService extends AbstractExtension
 {
-    /**
-     * @var FilemanagerService
-     */
-    private $filemanagerService;
+    private FilemanagerService $filemanagerService;
 
-    /**
-     * @var array
-     */
-    private $artgrisFileManagerConfig;
+    private array $artgrisFileManagerConfig;
 
     public function __construct(FilemanagerService $filemanagerService, ParameterBagInterface $parameterBag)
     {
@@ -25,7 +19,7 @@ class FileManagerConfigurationService extends AbstractExtension
         $this->artgrisFileManagerConfig = $parameterBag->get('artgris_file_manager');
     }
 
-    public function getWebPath(string $conf, array $extra = [])
+    public function getWebPath(string $conf, array $extra = []): bool|string
     {
         $dirPath = $this->filemanagerService->getBasePath(['conf' => $conf, 'extra' => $extra]);
 
@@ -36,7 +30,7 @@ class FileManagerConfigurationService extends AbstractExtension
         $confPath = $dirPath['dir'];
         $publicDir = '../'.$this->artgrisFileManagerConfig['web_dir'];
 
-        if (mb_strpos($confPath, $publicDir) !== 0) {
+        if (!str_starts_with($confPath, $publicDir)) {
             return true;
         }
 

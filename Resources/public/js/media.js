@@ -101,7 +101,7 @@ $(function () {
                 e.preventDefault();
                 var data = cropper.getData();
                 $.ajax({
-                    url: crop_url,
+                    url: cropUrl,
                     type: "post",
                     data: {
                         conf: conf,

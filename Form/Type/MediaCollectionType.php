@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MediaCollectionType extends CollectionType implements DataTransformerInterface
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         parent::buildForm($builder, $options);
         $builder->addModelTransformer($this);
@@ -22,7 +22,7 @@ class MediaCollectionType extends CollectionType implements DataTransformerInter
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $entryOptionsNormalizer = function (Options $options, $value) {
             $value['conf'] = $options['conf'];
@@ -56,7 +56,7 @@ class MediaCollectionType extends CollectionType implements DataTransformerInter
         $resolver->setNormalizer('entry_options', $entryOptionsNormalizer);
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         parent::buildView($view, $form, $options);
 
@@ -71,7 +71,7 @@ class MediaCollectionType extends CollectionType implements DataTransformerInter
         ]);
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'artgris_media_collection';
     }
@@ -79,7 +79,7 @@ class MediaCollectionType extends CollectionType implements DataTransformerInter
     /**
      * {@inheritdoc}
      */
-    public function transform($value)
+    public function transform($value): mixed
     {
         return $value;
     }
@@ -87,7 +87,7 @@ class MediaCollectionType extends CollectionType implements DataTransformerInter
     /**
      * {@inheritdoc}
      */
-    public function reverseTransform($value)
+    public function reverseTransform($value): mixed
     {
         if (\count($value) === 0) {
             return null;

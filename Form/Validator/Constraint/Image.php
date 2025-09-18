@@ -10,5 +10,5 @@ use Symfony\Component\Validator\Constraint;
 #[\Attribute]
 class Image extends Constraint
 {
-    public $message = 'artgris_validation.image';
+    public string $message = 'artgris_validation.image';
 }

@@ -13,19 +13,14 @@ class RSlashTwig extends AbstractExtension
     /**
      * {@inheritdoc}
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('rSlash', [$this, 'rSlash'], ['is_safe' => ['html']]),
         ];
     }
 
-    /**
-     * @param string $path
-     *
-     * @return string
-     */
-    public function rSlash($path)
+    public function rSlash(?string $path): string
     {
         if ($path !== null && $path[0] === '/') {
             $path = urldecode(mb_substr($path, 1));
