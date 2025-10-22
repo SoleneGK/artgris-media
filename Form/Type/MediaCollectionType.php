@@ -37,6 +37,7 @@ class MediaCollectionType extends CollectionType implements DataTransformerInter
             'prototype' => true,
             'prototype_data' => null,
             'prototype_name' => '__name__',
+            'prototype_options' => [],
             'entry_type' => MediaType::class,
             'entry_options' => [],
             'delete_empty' => false,
